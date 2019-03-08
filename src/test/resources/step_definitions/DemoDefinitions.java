@@ -9,16 +9,15 @@ public class DemoDefinitions implements En
     {
         Given("^I have a configured Cucumber project$", () ->
         {
-            System.out.println("bla");
-            throw new cucumber.api.PendingException();
+            throw new PendingException();
         });
         When("^I run it within my IDE$", () ->
         {
-            throw new cucumber.api.PendingException();
+            throw new PendingException();
         });
         Then("^I will be able to run connected step definitions$", () ->
         {
-            throw new cucumber.api.PendingException();
+            throw new PendingException();
         });
     }
 }
