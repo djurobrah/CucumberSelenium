@@ -2,6 +2,25 @@ plugins {
     id 'java'
 }
 
+// cucumber
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
+
+// cucumber
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "cucumber.api.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'gradle.cucumber', 'src/test/resources']
+        }
+    }
+}
+
 group 'com.djurobrah'
 version '1.0-SNAPSHOT'
 
