@@ -9,19 +9,22 @@ public class GoogleSearch_Steps implements En
 {
     private WebDriver webDriver;
 
+
     public GoogleSearch_Steps()
     {
         Given("^I am using Chrome as my browser$", () ->
         {
             webDriver = new ChromeDriver();
         });
-        When("^I visit google.com$", () ->
+        When("^I visit \"([^\"]*)\"$", (String arg0) ->
         {
-            webDriver.get("https://google.com");
+            webDriver.get(arg0);
         });
-        Then("^the title will google$", () ->
+        Then("^the title will contain \"([^\"]*)\"$", (String arg0) ->
         {
-            Assert.assertEquals("google", webDriver.getTitle().toLowerCase());
+            String expected = webDriver.getTitle();
+            Assert.assertEquals(arg0, webDriver.getTitle());
+            webDriver.close();
         });
     }
 }
